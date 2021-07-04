@@ -17,9 +17,9 @@ const JSONParser = (()=>{
                 "humidity": object.main.humidity,
                 "description": object.weather[0].description,
                 "icondesc": object.weather[0].main,
+                "name": object.name,
             }
         } catch (error){
-            console.log(error);
             handleError(object);
         }
     }

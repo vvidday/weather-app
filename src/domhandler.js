@@ -1,7 +1,19 @@
+import clear from './images/clear.png';
+import clouds from './images/clouds.png';
+import thunderstorm from './images/thunderstorm.png';
+import drizzle from './images/drizzle.png';
+import rain from './images/rain.png';
+import snow from './images/snow.png';
+import atmosphere from './images/atmosphere.png';
+
+
+
 const input = document.getElementById("input-field");
 const submitButton = document.getElementById("submit-button");
 const loadingdiv = document.getElementById("loading-div");
 let celsius = true;
+let currentcelsius = null;
+let currentfarenheit = null;
 
 function toggleVisibility(element){
     if(element.classList.contains("invisible")) element.classList.remove("invisible");
@@ -32,6 +44,7 @@ const handleError = (code) => {
 
 
 const displaycontainer = document.getElementById("weather-display-container");
+const displaycity = document.getElementById("display-city-name");
 const displayimg= document.getElementById("display-image");
 const displaytempdiv = document.getElementById("display-temp-div");
 const displaypressure= document.getElementById("display-pressure");
@@ -40,12 +53,51 @@ const displaydesc = document.getElementById("display-description");
 
 function updateDisplay(object){
     if(displaycontainer.classList.contains("invisible")) toggleVisibility(displaycontainer);
-    if(celsius) displaytempdiv.textContent = object["temperature-celsius"];
-    else displaytempdiv.textContent = object["temperature-farenheit"];
-    displaypressure.textContent = object.pressure;
-    displayhumid.textContent = object.humidity;
+    currentcelsius = object["temperature-celsius"];
+    currentfarenheit = object["temperature-farenheit"];
+    if(celsius) displaytempdiv.textContent = object["temperature-celsius"] + " °C";
+    else displaytempdiv.textContent = object["temperature-farenheit"] + " °F";
+    displaycity.textContent = object.name;
+    displaypressure.textContent = object.pressure + " hPa";
+    displayhumid.textContent = object.humidity + "%";
     displaydesc.textContent = object.description;
+
+    switch(object.icondesc){
+        case "Clear":
+            displayimg.src = clear;
+            break;
+        case "Clouds":
+            displayimg.src = clouds;
+            break;
+        case "Thunderstorm":
+            displayimg.src = thunderstorm;
+            break;  
+        case "Drizzle":
+            displayimg.src = drizzle;
+            break;  
+        case "Rain":
+            displayimg.src = rain;
+            break;  
+        case "Snow":
+            displayimg.src = snow;
+            break;
+        default:
+            displayimg.src = atmosphere;
+            break;
+    }
+
+}
+
+function toggleFormat(value){
+    if (value == 0 && celsius){
+        celsius = false;
+        if(currentfarenheit) displaytempdiv.textContent = currentfarenheit + " °F";
+    }
+    else if (value == 1 && !celsius){
+        celsius = true;
+        if(currentcelsius) displaytempdiv.textContent = currentcelsius + " °C";
+    }
 }
 
 
-export {toggleLoading, handleError, updateDisplay};
+export {toggleLoading, handleError, updateDisplay, toggleFormat};
