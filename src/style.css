@@ -1,14 +1,35 @@
+@font-face {
+  font-family: "Nunito";
+  src: url(./Nunito-Regular.ttf);
+}
+
+:root {
+  font-size: 10px;
+  font-family: "Nunito", sans-serif;
+}
+
+body {
+  font-size: 1.6rem;
+  background: linear-gradient(
+    to right,
+    #2c5364,
+    #203a43,
+    #0f2027
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  text-align: center;
+  color: whitesmoke;
+}
+
 .invisible {
   visibility: hidden;
 }
 
 #loading-div {
   position: absolute;
-
-  border: 16px solid whitesmoke;
-  border-top: 16px solid black;
-  width: 120px;
-  height: 120px;
+  border: 8px solid whitesmoke;
+  border-top: 8px solid black;
+  width: 60px;
+  height: 60px;
   animation: spin 1s linear infinite;
   border-radius: 50%;
 }
@@ -19,5 +40,127 @@
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+header {
+  font-size: 5rem;
+  color: honeydew;
+}
+
+#input {
+  display: flex;
+  width: 50%;
+  margin: 3rem auto;
+  justify-content: center;
+}
+
+form {
+  display: grid;
+  grid-template-columns: 0.2fr 5fr 1fr;
+  background-color: grey;
+  justify-items: center;
+  align-items: center;
+  border-radius: 15px;
+}
+
+form:focus-within {
+  box-shadow: 0px 0px 10px 10px rgba(220, 220, 220, 0.7);
+}
+
+#input-field {
+  grid-column: 2 / 3;
+  border: none;
+  background-color: grey;
+  color: whitesmoke;
+  font-size: 3rem;
+}
+
+#input-field:focus {
+  outline: none;
+}
+
+::placeholder {
+  font-family: "Nunito";
+  color: whitesmoke;
+  opacity: 1;
+}
+
+#submit-button {
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: transparent;
+  color: transparent;
+  background-image: url(./images/search.svg);
+  grid-column: 3 / 4;
+}
+
+#submit-button:hover {
+  transform: scale(110%);
+  cursor: pointer;
+}
+
+#toggle-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#toggle {
+  width: 3.5rem;
+  cursor: pointer;
+}
+
+#weather-display-container {
+  border: 2px solid honeydew;
+  width: 50%;
+  margin: 3rem auto;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 3rem 0 3rem 0;
+}
+
+#display-city-name {
+  font-size: 3rem;
+}
+
+#display-temp-div {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+#display-image-div {
+  display: flex;
+  align-items: center;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  width: 99%;
+  margin: 2rem auto;
+}
+
+@media screen and (max-width: 600px) {
+  #input {
+    width: 90%;
+  }
+  #input-field {
+    font-size: 2rem;
+  }
+  #weather-display-container {
+    width: 90%;
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  #weather-display-container {
+    width: 30%;
   }
 }

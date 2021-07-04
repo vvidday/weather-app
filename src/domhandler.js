@@ -10,7 +10,9 @@ import atmosphere from './images/atmosphere.png';
 
 const input = document.getElementById("input-field");
 const submitButton = document.getElementById("submit-button");
+const form = document.querySelector("form");
 const loadingdiv = document.getElementById("loading-div");
+const togglecontainer = document.getElementById("toggle-container");
 let celsius = true;
 let currentcelsius = null;
 let currentfarenheit = null;
@@ -22,13 +24,15 @@ function toggleVisibility(element){
 
 
 function toggleLoading(){
-    toggleVisibility(input);
-    toggleVisibility(submitButton);
+    toggleVisibility(form);
     toggleVisibility(loadingdiv);
+    toggleVisibility(togglecontainer);
+    
 }
 
 
 const handleError = (code) => {
+    toggleLoading();
     switch(code){
         case 404:
             alert("Sorry, we couldn't find your city!");
@@ -58,8 +62,8 @@ function updateDisplay(object){
     if(celsius) displaytempdiv.textContent = object["temperature-celsius"] + " °C";
     else displaytempdiv.textContent = object["temperature-farenheit"] + " °F";
     displaycity.textContent = object.name;
-    displaypressure.textContent = object.pressure + " hPa";
-    displayhumid.textContent = object.humidity + "%";
+    displaypressure.textContent = "pressure: " + object.pressure + " hPa";
+    displayhumid.textContent = "humidity: " + object.humidity + "%";
     displaydesc.textContent = object.description;
 
     switch(object.icondesc){
@@ -98,6 +102,7 @@ function toggleFormat(value){
         if(currentcelsius) displaytempdiv.textContent = currentcelsius + " °C";
     }
 }
+
 
 
 export {toggleLoading, handleError, updateDisplay, toggleFormat};

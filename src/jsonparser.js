@@ -21,6 +21,7 @@ const JSONParser = (()=>{
             }
         } catch (error){
             handleError(object);
+            return "error";
         }
     }
 

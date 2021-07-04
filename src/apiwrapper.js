@@ -14,7 +14,6 @@ const weather = (() => {
             return data;
         }
         else{
-            toggleLoading();
             return response.status;
         }
     }

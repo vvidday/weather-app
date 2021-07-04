@@ -11,7 +11,7 @@ function buttonListener(){
     if(input.checkValidity()){
         JSONParser.parseWeather(weather.getCurrentWeather(input.value)).then((data)=>{
             input.value = "";
-            updateDisplay(data);
+            if(data != "error") updateDisplay(data);
             // let element = document.createElement("div");
             // element.textContent = JSON.stringify(data);
             // document.body.appendChild(element);
