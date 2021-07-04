@@ -7,14 +7,23 @@
     <title>Weather App</title>
 </head>
 <body>
-    <form onsubmit="return false;">
-        <label for="input-field"></label>
-        <input type="text" id="input-field" required autofocus>
-        <input type="submit" value="go" id="submit-button">
-    </form>
+    <section id="input">
+        <form onsubmit="return false;">
+            <label for="input-field"></label>
+            <input type="text" id="input-field" required autofocus>
+            <input type="submit" value="go" id="submit-button">
+        </form>
+        <div id="toggle-container">
+            <span>Farenheit</span>
+            <input type="range" min="0" max="1" id="toggle">
+            <span>Celsius</span>
+        </div>
+        
+</section>
     <div id="loading-div" class="invisible"></div>
 
     <section class="invisible" id="weather-display-container">
+        <div id="display-city-name"></div>
         <div id="display-image-div">
             <img src="#" id="display-image">
         </div>
